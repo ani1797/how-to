@@ -52,6 +52,16 @@ A production-ready **Databricks Asset Bundle** setup with full CI/CD (validate, 
 
 ---
 
+## 🧪 Testing & Integration
+
+Workshops on integration testing patterns and messaging infrastructure.
+
+### [Test with RabbitMQ](./test-with-rabbitmq/)
+A Spring Boot workshop demonstrating **integration testing with Apache AMQP/QPID**. Uses an embedded in-memory QPID broker to run full message-passing tests without external infrastructure. A repeatable pattern for testing any RabbitMQ-based service reliably in CI.
+→ [Go to workshop](./test-with-rabbitmq/)
+
+---
+
 ## 🏗️ Platform
 
 Workshops on infrastructure, deployment, and operations.
