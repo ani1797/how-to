@@ -1,0 +1,21 @@
+flowchart LR
+    U[Upstream Systems] --> API[Ingestion API]
+    API --> B[(Azure Blob Storage)]
+    API --> Q[Service Bus Queue or Event Hub]
+
+    Q --> A1[Worker Pool Instance 1]
+    Q --> A2[Worker Pool Instance 2]
+    Q --> A3[Worker Pool Instance N]
+
+    A1 --> DI[Azure Document Intelligence]
+    A2 --> DI
+    A3 --> DI
+
+    DI --> RS[(Results Database or Blob)]
+    A1 --> DLQ[Dead-Letter Queue]
+    A2 --> DLQ
+    A3 --> DLQ
+
+    Q --> MON[Queue Depth and Throughput Metrics]
+    DLQ --> MON
+    DI --> MON

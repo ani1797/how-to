@@ -1,0 +1,22 @@
+flowchart LR
+    C[Client Apps] -->|Analyze Request| APIM[Azure API Management]
+
+    subgraph GatewayPolicies[Gateway Policies]
+        R1[Retry and Timeout]
+        R2[Rate Limit and Spike Control]
+        R3[Circuit Breaker and Health Checks]
+    end
+
+    APIM --> R1
+    APIM --> R2
+    APIM --> R3
+
+    R1 --> P[Document Intelligence Primary Region]
+    R3 -->|On failure or unhealthy| S[Document Intelligence Secondary Region]
+
+    P --> O[(Results Store)]
+    S --> O
+
+    APIM --> M[Azure Monitor and Application Insights]
+    P --> M
+    S --> M

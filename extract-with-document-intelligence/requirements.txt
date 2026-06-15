@@ -1,0 +1,21 @@
+# Azure Document Intelligence SDK (v4.0 GA - API version 2024-11-30)
+azure-ai-documentintelligence==1.0.2
+
+# Azure Identity for Entra ID (AAD) authentication
+azure-identity>=1.15.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Jupyter notebook support
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Data manipulation and display
+pandas>=2.0.0
+
+# Image handling (for viewing document pages)
+Pillow>=10.0.0
+
+# Async HTTP transport (required for async SDK usage)
+aiohttp>=3.9.0
