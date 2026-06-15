@@ -1,0 +1,138 @@
+# Multi-stage Dockerfile for Retail AI Agents with OPA Sidecar
+# This template builds agent containers for Azure AI Foundry deployment
+
+# Build argument for agent type
+ARG AGENT_TYPE=customer_service
+
+# ============================================================================
+# Stage 1: Build Python dependencies
+# ============================================================================
+FROM python:3.11-slim as builder
+
+WORKDIR /build
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+  gcc \
+  g++ \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy only requirements first for better caching
+COPY pyproject.toml .
+COPY README.md .
+
+# Install uv for fast dependency resolution
+RUN pip install --no-cache-dir uv
+
+# Install Python dependencies
+RUN uv pip install --system --no-cache-dir \
+  azure-ai-projects>=1.0.0 \
+  azure-identity>=1.15.0 \
+  requests>=2.31.0 \
+  pydantic>=2.5.0 \
+  pydantic-settings>=2.0.0 \
+  rich>=13.7.0
+
+# ============================================================================
+# Stage 2: Runtime image for Agent
+# ============================================================================
+FROM python:3.11-slim as agent
+
+# Set working directory
+WORKDIR /app
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+  curl \
+  ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy Python packages from builder
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+
+# Copy application code
+COPY src/ /app/src/
+COPY .env.template /app/.env
+
+# Build argument for agent type
+ARG AGENT_TYPE
+ENV AGENT_TYPE=${AGENT_TYPE}
+
+# Set Python path
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+# Configure OPA client to use sidecar
+ENV OPA_URL=http://localhost:8181
+ENV ENABLE_POLICY_AUDIT=true
+
+# Expose agent port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
+# Create entrypoint script
+RUN echo '#!/bin/bash\n\
+  set -e\n\
+  \n\
+  # Wait for OPA sidecar to be ready\n\
+  echo "Waiting for OPA sidecar..."\n\
+  until curl -sf http://localhost:8181/health > /dev/null 2>&1; do\n\
+  echo "OPA not ready, waiting..."\n\
+  sleep 2\n\
+  done\n\
+  echo "OPA sidecar is ready!"\n\
+  \n\
+  # Start the agent server\n\
+  echo "Starting ${AGENT_TYPE} agent server..."\n\
+  exec python -m src.server' > /app/entrypoint.sh \
+  && chmod +x /app/entrypoint.sh
+
+# Run agent server
+CMD ["/app/entrypoint.sh"]
+
+# ============================================================================
+# Stage 3: OPA Sidecar Image (reference only - use official OPA image)
+# ============================================================================
+# The OPA sidecar runs as a separate container in the same pod
+# Use: openpolicyagent/opa:latest-static
+#
+# OPA Configuration:
+# - Run with: opa run --server --addr=0.0.0.0:8181 /policies
+# - Volume mount policies: /policies (contains authorization.rego, behavior.rego)
+# - Health endpoint: http://localhost:8181/health
+
+# ============================================================================
+# Build Instructions
+# ============================================================================
+#
+# Build customer service agent:
+#   docker build -t retail-customer-service-agent:latest \
+#     --build-arg AGENT_TYPE=customer_service \
+#     -f .foundry/Dockerfile.template .
+#
+# Build inventory agent:
+#   docker build -t retail-inventory-agent:latest \
+#     --build-arg AGENT_TYPE=inventory_management \
+#     -f .foundry/Dockerfile.template .
+#
+# Build order processing agent:
+#   docker build -t retail-order-agent:latest \
+#     --build-arg AGENT_TYPE=order_processing \
+#     -f .foundry/Dockerfile.template .
+#
+# Build returns/refund agent:
+#   docker build -t retail-returns-agent:latest \
+#     --build-arg AGENT_TYPE=returns_refund \
+#     -f .foundry/Dockerfile.template .
+#
+# Test locally with docker-compose:
+#   docker-compose -f .foundry/docker-compose.foundry.yml up
+#
+# Push to Azure Container Registry:
+#   az acr login --name yourregistry
+#   docker tag retail-customer-service-agent:latest \
+#     yourregistry.azurecr.io/retail-customer-service-agent:latest
+#   docker push yourregistry.azurecr.io/retail-customer-service-agent:latest
