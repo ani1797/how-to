@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=../.schema/databricks.json
+resources:
+  jobs:
+    training_job:
+      name: summarization_model_training
+      description: |
+        Summarization Model Training Job
+      max_concurrent_runs: 1
+      tags:
+        environment: ${bundle.target}
+      email_notifications:
+        on_failure:
+          - aggaani@mfcgd.com
+      tasks:
+        - task_key: training
+          description: |
+            Model Training Script
+          notebook_task:
+            notebook_path: ../src/train.ipynb
+            base_parameters:
+              summarization_model_name: ${resources.models.summarization_model.name}
+          libraries:
+            - whl: ../dist/*.whl
+          new_cluster:
+            instance_pool_id: ${var.instance_pool_id}
+            spark_version: 16.4.x-scala2.12
+            is_single_node: true
+            spark_conf:
+              spark.databricks.cluster.profile: singleNode
+              spark.master: local[*]
+            spark_env_vars:
+              AZURE_OPENAI_API_KEY: "{{secrets/nonprodgaalabkv/nonprodgaalaboai-apikey}}"
+              AZURE_OPENAI_ENDPOINT: https://nonprodgaalaboai.openai.azure.com/
+              OPENAI_API_VERSION: 2024-12-01-preview
+              MLFLOW_EXPERIMENT_ID: ${resources.experiments.summarization_experiment.id}
+            custom_tags:
+              ResourceClass: SingleNode
+            kind: CLASSIC_PREVIEW
+            use_ml_runtime: true

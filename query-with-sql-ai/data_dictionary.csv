@@ -1,0 +1,21 @@
+table,column_name,dtype,description,primary_key?,foreign_key
+customers,customerID,number,"Unique Identifier of Customer",Y,
+customers,firstName,string,"First name of the customer",,
+customers,lastName,string,"Last name of the customer",,
+customer,birthDay,date,"Birthdate",,
+employees,employeeID,number,"Unique Employee ID",Y,
+employees,firstName,string,"First name of the employee",,
+employees,lastName,string,"Last name of the employee",,
+employees,birthDay,date,"Birthdate",,
+products,productID,number,"Unique Product ID of product also known as UPC",Y,
+products,productName,string,"Name of the product",,
+products,catagory,string,"Catagory of the product",,
+products,itemPrice,number,"Price of the product",,
+orders,orderID,number,"Unique Order Number",Y,
+orders,customerID,number,"Customer ID for the Order",,customers.customerID
+orders,employeeID,number,"Employee who filled the order",,employee.employeeID
+orders,orderDate,date,"Date of the order",,
+order_items,orderID,string,"Order ID for the order",Y,orders.orderID
+order_items,productID,string,"Product ID of the product purchased",Y,products.productID
+order_items,itemCount,number,"Number of items of the given product in this order",,
+order_items,salePrice,number,"Price at which this product is sold for",,

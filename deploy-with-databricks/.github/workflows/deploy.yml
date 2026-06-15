@@ -1,0 +1,69 @@
+name: Deployment
+
+concurrency:
+  cancel-in-progress: true
+  group: '${{ github.ref_name }}-deploy'
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate:
+    name: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # Install pre-requisites
+      - uses: databricks/setup-cli@main
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          allow-no-subscriptions: true
+      - name: deployment_target
+        id: deployment_target
+        run: |
+          # target=staging when branch is develop and target=prod when branch is main
+          if [[ "develop" == "${{ github.ref_name }}" ]]; then
+            target=staging
+          else
+            target=prod
+          fi
+          echo "Target: $target"
+          echo "target=$target" >> $GITHUB_OUTPUT
+      - run: databricks bundle validate --target ${{ steps.deployment_target.outputs.target }}
+        working-directory: .
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v3
+      # Install pre-requisites
+      - uses: databricks/setup-cli@main
+      - uses: astral-sh/setup-uv@v5
+      - name: "Set up Python with specified version"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          allow-no-subscriptions: true
+      - name: deployment_target
+        id: deployment_target
+        run: |
+          # target=staging when branch is develop and target=prod when branch is main
+          if [[ "develop" == "${{ github.ref_name }}" ]]; then
+            target=staging
+          else
+            target=prod
+          fi
+          echo "Target: $target"
+          echo "target=$target" >> $GITHUB_OUTPUT
+      - run: databricks bundle deploy --target ${{ steps.deployment_target.outputs.target }}
+        working-directory: .

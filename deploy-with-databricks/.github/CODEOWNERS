@@ -1,0 +1,10 @@
+# Require Platform Team Reviews
+databricks.y(a)ml @chitrankv27
+resources/*.y(a)ml @chitrankv27
+resouces/**/*.y(a)ml @chitrankv27
+
+# Require CI Team Review
+.github/ @chitrankv27
+
+# Require App Team Review
+src/ @ani1797

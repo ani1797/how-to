@@ -1,0 +1,224 @@
+[
+    {
+        "UPC": "031214567890",
+        "Name": "Bicycle",
+        "Price": 500,
+        "Category": "Bicycles"
+    },
+    {
+        "UPC": "031214567901",
+        "Name": "Running Shoes",
+        "Price": 100,
+        "Category": "Footwear"
+    },
+    {
+        "UPC": "031214567902",
+        "Name": "Soccer Cleats",
+        "Price": 80,
+        "Category": "Footwear"
+    },
+    {
+        "UPC": "031214567903",
+        "Name": "Hockey Puck",
+        "Price": 5,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567904",
+        "Name": "Baseball Glove",
+        "Price": 20,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567905",
+        "Name": "Basketball",
+        "Price": 10,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567906",
+        "Name": "Soccer Ball",
+        "Price": 8,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567907",
+        "Name": "Tennis Racket",
+        "Price": 70,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567908",
+        "Name": "Golf Clubs",
+        "Price": 200,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567909",
+        "Name": "Fishing Pole",
+        "Price": 50,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567910",
+        "Name": "Camping Tent",
+        "Price": 150,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567911",
+        "Name": "Backpack",
+        "Price": 30,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567912",
+        "Name": "Hiking Boots",
+        "Price": 80,
+        "Category": "Footwear"
+    },
+    {
+        "UPC": "031214567913",
+        "Name": "Ski Jacket",
+        "Price": 100,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567914",
+        "Name": "Snowboard",
+        "Price": 200,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567915",
+        "Name": "Warm Gloves",
+        "Price": 20,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567916",
+        "Name": "Hiking Poles",
+        "Price": 50,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567917",
+        "Name": "Water Bottle",
+        "Price": 10,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567918",
+        "Name": "Portable Stove",
+        "Price": 80,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567919",
+        "Name": "Headlamp",
+        "Price": 30,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567920",
+        "Name": "Camping Chair",
+        "Price": 50,
+        "Category": "Outdoor Furniture"
+    },
+    {
+        "UPC": "031214567921",
+        "Name": "Folding Bike",
+        "Price": 300,
+        "Category": "Bicycles"
+    },
+    {
+        "UPC": "031214567922",
+        "Name": "Running Shorts",
+        "Price": 20,
+        "Category": "Footwear"
+    },
+    {
+        "UPC": "031214567923",
+        "Name": "Yoga Mat",
+        "Price": 40,
+        "Category": "Fitness Equipment"
+    },
+    {
+        "UPC": "031214567924",
+        "Name": " resistance Bands",
+        "Price": 20,
+        "Category": "Fitness Equipment"
+    },
+    {
+        "UPC": "031214567925",
+        "Name": "Sports Nutrition",
+        "Price": 15,
+        "Category": "Supplements"
+    },
+    {
+        "UPC": "031214567926",
+        "Name": "Sports Water Bottle",
+        "Price": 10,
+        "Category": "Outdoor Gear"
+    },
+    {
+        "UPC": "031214567927",
+        "Name": "Protein Powder",
+        "Price": 25,
+        "Category": "Supplements"
+    },
+    {
+        "UPC": "031214567928",
+        "Name": "Multivitamin",
+        "Price": 5,
+        "Category": "Supplements"
+    },
+    {
+        "UPC": "031214567929",
+        "Name": "Sports Massage Oil",
+        "Price": 15,
+        "Category": "Health and Beauty"
+    },
+    {
+        "UPC": "031214567930",
+        "Name": "Sports Nutrition Bar",
+        "Price": 2,
+        "Category": "Supplements"
+    },
+    {
+        "UPC": "031214567931",
+        "Name": "Running Belts",
+        "Price": 30,
+        "Category": "Footwear"
+    },
+    {
+        "UPC": "031214567932",
+        "Name": "Fitness Trackers",
+        "Price": 50,
+        "Category": "Fitness Equipment"
+    },
+    {
+        "UPC": "031214567933",
+        "Name": "Sports Apparel",
+        "Price": 40,
+        "Category": "Clothing and Accessories"
+    },
+    {
+        "UPC": "031214567934",
+        "Name": "Sporting Goods",
+        "Price": 30,
+        "Category": "Sports Equipment"
+    },
+    {
+        "UPC": "031214567935",
+        "Name": "Fitness Classes",
+        "Price": 60,
+        "Category": "Fitness Services"
+    },
+    {
+        "UPC": "031214567936",
+        "Name": "Sports Medicine Kits",
+        "Price": 80,
+        "Category": "Health and Beauty"
+    }
+]

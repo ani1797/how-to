@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=../.schema/databricks.json
+resources:
+  experiments:
+    summarization_experiment:
+      name: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}/${var.summarization_model_name}_experiment
+

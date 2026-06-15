@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../.schema/databricks.json
+resources:
+  models:
+    summarization_model:
+      name: ${var.summarization_model_name}
+      description: |
+        Summarization model summarizes text provided by the user using a large language model.
+
+targets:
+  dev:
+    variables:
+      summarization_model_name: summarization
+  staging:
+    variables:
+      summarization_model_name: summarization_staging
+  prod:
+    variables:
+      summarization_model_name: summarization_prod

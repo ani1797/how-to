@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=.schema/databricks.json
+
+artifacts:
+  default:
+    type: whl
+    build: uv build
+    path: .
+
+bundle:
+  name: databricks-asset-bundle
+
+# Uncomment the following lines to enable the use of a service principal as the resource owner.
+# This is the user that should have access to the following:
+# - The workspace Resources
+# - Azure Resources required for the job
+# > NOTE: Different SPN can be used for different targets. use targets.<name>.run_as to override the default.
+# > If you are using apps, DONOT add the service principal at the workspace level but add granularly over the resources.
+# run_as:
+#   service_principal_name: <service_principal_name>
+
+include:
+  - resources/*.yml
+
+variables:
+  instance_pool_id:
+    type: string
+    description: The instance pool ID to use for the cluster.
+  summarization_model_name:
+    type: string
+    description: The name of the summarization model to create.
+  general_agent_model_name:
+    type: string
+    description: The name of the general agent model to create.
+
+targets:
+  dev:
+    default: true
+    workspace:
+      host: https://adb-729427955108893.13.azuredatabricks.net
+    variables:
+      instance_pool_id: 1101-180711-buggy143-pool-t67zifwg
+      summarization_model_name: summarization
+      general_agent_model_name: general_agent
+    permissions:
+      - user_name: aggaani@mfcgd.com
+        level: CAN_MANAGE
+  staging:
+    default: false
+    workspace:
+      host: https://adb-729427955108893.13.azuredatabricks.net
+    variables:
+      instance_pool_id: 1101-180711-buggy143-pool-t67zifwg
+      summarization_model_name: summarization_staging
+      general_agent_model_name: general_agent_staging
+    permissions:
+      - user_name: aggaani@mfcgd.com
+        level: CAN_VIEW
+  prod:
+    default: false
+    workspace:
+      host: https://adb-729427955108893.13.azuredatabricks.net
+    variables:
+      instance_pool_id: 1101-180711-buggy143-pool-t67zifwg
+      summarization_model_name: summarization
+    permissions:
+      - group_name: admins
+        level: CAN_MANAGE

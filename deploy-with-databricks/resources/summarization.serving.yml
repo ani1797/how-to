@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../.schema/databricks.json
+# resources:
+#   model_serving_endpoints:
+#     summarization_serving:
+#       name: summarization
+#       config:
+#         served_entities:
+#           - name: summarization
+#             entity_name: ${resources.models.summarization_model.name}
+#             entity_version: "1"
+#             workload_type: "CPU"
+#             workload_size: "Small"
+#             scale_to_zero_enabled: true
+#             environment_vars:
+#               AZURE_OPENAI_API_KEY: "{{secrets/nonprodgaalabkv/nonprodgaalaboai-apikey}}"
+#               AZURE_OPENAI_ENDPOINT: https://nonprodgaalaboai.openai.azure.com/
+#               OPENAI_API_VERSION: 2024-12-01-preview

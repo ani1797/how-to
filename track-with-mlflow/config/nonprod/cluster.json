@@ -1,0 +1,42 @@
+{
+    "autoscale": {
+        "min_workers": 1,
+        "max_workers": 3
+    },
+    "spark_version": "14.0.x-cpu-ml-scala2.12",
+    "spark_conf": {
+        "spark.databricks.repl.allowedLanguages": "sql,python,r",
+        "fs.azure.account.auth.type.cacaadatalakeproddl.dfs.core.windows.net": "OAuth",
+        "fs.azure.account.oauth2.client.endpoint.cacaadatalakeproddl.dfs.core.windows.net": "https://login.microsoftonline.com/5d3e2773-e07f-4432-a630-1a0f68a28a05/oauth2/token",
+        "spark.databricks.delta.preview.enabled": "true",
+        "fs.azure.account.oauth.provider.type.cacaadatalakeproddl.dfs.core.windows.net": "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider",
+        "fs.azure.account.oauth2.client.secret.cacaadatalakeproddl.dfs.core.windows.net": "{{secrets/cac-aa-datalakeprod/cdn-aa-data-nonpii}}",
+        "fs.azure.account.oauth2.client.id.cacaadatalakeproddl.dfs.core.windows.net": "04ac5859-16cc-4166-996d-e1007f26b08c",
+        "spark.databricks.cluster.profile": "serverless"
+    },
+    "azure_attributes": {
+        "first_on_demand": 1,
+        "availability": "ON_DEMAND_AZURE",
+        "spot_bid_max_price": -1
+    },
+    "node_type_id": "Standard_DS4_v2",
+    "ssh_public_keys": [],
+    "custom_tags": {
+        "ResourceClass": "Serverless"
+    },
+    "cluster_log_conf": {
+        "dbfs": {
+            "destination": "dbfs:/mnt/databricks-cluster-logs"
+        }
+    },
+    "spark_env_vars": {
+        "QUALYS_CUSTOMERID": "{{secrets/cac-aa-datalakeprod/qualys-customerid}}",
+        "CRAN_REPO": "https://cdn_team_generic_aa:${ARTIFACTORY_PWD}@artifactory.manulife.ca/artifactory/r/",
+        "QUALYS_ACTIVATIONID": "{{secrets/cac-aa-datalakeprod/qualys-activationid}}",
+        "ARTIFACTORY_PWD": "{{secrets/cac-aa-datalakeprod/aa-artifactory-api-key}}"
+    },
+    "enable_elastic_disk": true,
+    "init_scripts": [],
+    "policy_id": "000504F08995B634",
+    "runtime_engine": "STANDARD"
+}

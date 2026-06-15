@@ -1,0 +1,11 @@
+command:
+  - streamlit
+  - run
+  - app.py
+env:
+  - name: AZURE_OPENAI_API_KEY
+    valueFrom: "AZURE_OPENAI_API_KEY"
+  - name: AZURE_OPENAI_ENDPOINT
+    value: https://nonprodgaalaboai.openai.azure.com/
+  - name: OPENAI_API_VERSION
+    value: 2024-12-01-preview

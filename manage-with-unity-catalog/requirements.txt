@@ -1,0 +1,8 @@
+pandas
+pyyaml
+pyspark
+delta-spark
+pydantic
+pydantic_yaml
+
+ipykernel

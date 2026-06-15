@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=../.schema/databricks.json
+resources:
+  experiments:
+    general_agent_experiment:
+      name: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}/${var.general_agent_model_name}_experiment

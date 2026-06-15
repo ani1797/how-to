@@ -1,0 +1,40 @@
+[project]
+name = "databricks-asset-bundle"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Anirudh Aggarwal", email = "ani.aggarwal@mail.utoronto.ca" },
+]
+requires-python = ">=3.12"
+dependencies = [
+    "databricks-dlt>=0.3.0",
+    "fastapi>=0.115.12",
+    "langchain>=0.3.24",
+    "langchain-community>=0.3.21",
+    "langchain-core>=0.3.56",
+    "langchain-openai>=0.3.15",
+    "langgraph>=0.4.0",
+    "mlflow>=2.22.0",
+    "pandas>=2.2.3",
+    "uvicorn>=0.34.2",
+]
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = ["databricks-connect>=16.3.2", "ipykernel>=6.29.5", "pytest>=8.3.5"]
+app = ["streamlit>=1.45.0"]
+
+[project.scripts]
+api = "underwriting_ui.api:main"
+
+
+[tool.pytest.ini_options]
+addopts = "-p no:warnings"
+testpaths = ["tests"]
+
+# [[tool.uv.index]]
+# name = "artifactory"
+# url = "https://artifactory.example.com/artifactory/api/pypi/pypi/simple"

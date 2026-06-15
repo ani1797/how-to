@@ -1,0 +1,28 @@
+name: mlflow-experiment
+conda_env: environment.yaml
+entry_points:
+  ingest:
+    parameters:
+      output_dir: path
+    command: "python mlflow_experiment_test/ingest.py {output_dir}"
+  transform:
+    parameters:
+      dataset_file: path
+      output_dir: path
+    command: "python mlflow_experiment_test/transform.py {dataset_file} {output_dir}"
+  split:
+    parameters:
+      dataset_file: path
+      output_dir: path
+      test_size: { type: float, default: 0.3 }
+    command: "python mlflow_experiment_test/split.py {dataset_file} {output_dir} {test_size}"
+  train:
+    parameters:
+      data_dir: path
+      output_dir: path
+    command: "python mlflow_experiment_test/train.py {data_dir} {output_dir}"
+  # Main can be used to orchestrate the entire project. main.py file is like the glue file that puts all the individual pieces together and can run the whole project steps.
+  main:
+    parameters:
+      data_dir: path
+    command: "python mlflow_experiment_test/main.py {data_dir}"

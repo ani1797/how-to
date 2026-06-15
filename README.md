@@ -30,6 +30,28 @@ A bite-sized intro to **Azure Document Intelligence** (formerly Form Recognizer)
 
 ---
 
+## 📊 Data & ML
+
+Workshops on data engineering, ML experiment tracking, and Databricks platform patterns.
+
+### [Query with SQL AI](./query-with-sql-ai/)
+A CLI tool and workshop demonstrating **natural language → SQL** using LLMs. Supports multiple backends (OpenAI + Ollama), jinja2 prompt templates, and a schema-aware query pipeline. Good foundation for building NL interfaces on top of databases.
+→ [Go to workshop](./query-with-sql-ai/)
+
+### [Track with MLflow](./track-with-mlflow/)
+End-to-end **MLflow experiment tracking** pipeline with ingest, transform, train, and runtime stages. Includes Jenkins CI/CD config and multi-environment setup (nonprod/prod). A repeatable pattern for reproducible ML.
+→ [Go to workshop](./track-with-mlflow/)
+
+### [Manage with Unity Catalog](./manage-with-unity-catalog/)
+A CLI tool for managing **Databricks Unity Catalog** — schema creation, query collection, and catalog expansion for data teams. Includes a devcontainer and research notebooks.
+→ [Go to workshop](./manage-with-unity-catalog/)
+
+### [Deploy with Databricks](./deploy-with-databricks/)
+A production-ready **Databricks Asset Bundle** setup with full CI/CD (validate, deploy, release workflows), ML experiment configs, and schema definitions. Repeatable pattern for deploying models and experiments on Databricks.
+→ [Go to workshop](./deploy-with-databricks/)
+
+---
+
 ## 🏗️ Platform
 
 Workshops on infrastructure, deployment, and operations.

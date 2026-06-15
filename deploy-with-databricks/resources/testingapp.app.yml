@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=../.schema/databricks.json
+# resources:
+#   apps:
+#     samplechatapp:
+#       name: demo-app-${bundle.target}
+#       description: A testing chat app for our general purpose agent.
+#       source_code_path: /Workspace/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}/files/src/ui_app
+#       resources:
+#         - name: AZURE_OPENAI_API_KEY
+#           secret:
+#             key: nonprodgaalaboai-apikey
+#             scope: nonprodgaalabkv
+#             permission: READ
+#       permissions:
+#         - user_name: "aggaani@mfcgd.com"
+#           level: "CAN_USE"
