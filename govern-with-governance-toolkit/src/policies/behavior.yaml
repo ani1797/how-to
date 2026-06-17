@@ -1,0 +1,33 @@
+apiVersion: governance.toolkit/v1
+name: retail-behavior
+default_action: allow
+rules:
+  - name: rate-limit
+    condition: "len(recent_actions) > 100"
+    action: deny
+    description: "Rate limit: max 100 actions per window"
+
+  - name: block-large-transfer-without-manager
+    condition: "quantity > 500 and role not in ['warehouse_manager', 'store_manager', 'regional_manager', 'admin']"
+    action: deny
+    description: "Transfers of >500 units require manager-level role"
+
+  - name: block-below-cost-price
+    condition: "new_price < cost and action == 'apply_discount'"
+    action: deny
+    description: "Price cannot be set below cost"
+
+  - name: block-below-map
+    condition: "new_price < minimum_advertised_price and action == 'apply_discount' and manager_approved == False and special_promotion == False"
+    action: deny
+    description: "Price cannot go below MAP without manager approval or special promotion"
+
+  - name: block-late-refund
+    condition: "days_since_purchase > 30 and action == 'process_refund'"
+    action: deny
+    description: "Refunds not accepted after 30 days"
+
+  - name: block-large-refund-no-receipt
+    condition: "amount > 50 and has_receipt == False and action == 'process_refund'"
+    action: deny
+    description: "Refunds over $50 require a receipt"
