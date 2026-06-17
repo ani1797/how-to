@@ -251,11 +251,17 @@ class GovernanceEnforcer:
             },
             "recent_actions": recent_actions,
             "timestamp": datetime.utcnow().isoformat(),
-            # Flatten for simpler YAML conditions
+            # Flatten for simpler YAML conditions:
+            #   action_type  — the action verb as a plain string (use this in YAML conditions)
+            #   role         — agent role string
+            #   resource.*   — all resource fields hoisted to top level
+            #   context.*    — all context fields (e.g. manager_approved) hoisted to top level
             "role": agent.role.value,
+            "action_type": action.action_type.value,
             "resource": action.resource,
             "context": action.context,
             **action.resource,
+            **action.context,
         }
         beh_allowed, beh_reason = self._evaluate(
             self.behavior_engine, behavior_ctx, agent.agent_id, "AGT-B"

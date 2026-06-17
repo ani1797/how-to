@@ -13,21 +13,21 @@ rules:
     description: "Transfers of >500 units require manager-level role"
 
   - name: block-below-cost-price
-    condition: "new_price < cost and action == 'apply_discount'"
+    condition: "new_price < cost and action_type == 'apply_discount'"
     action: deny
     description: "Price cannot be set below cost"
 
   - name: block-below-map
-    condition: "new_price < minimum_advertised_price and action == 'apply_discount' and manager_approved == False and special_promotion == False"
+    condition: "new_price < minimum_advertised_price and action_type == 'apply_discount' and manager_approved == False and special_promotion == False"
     action: deny
     description: "Price cannot go below MAP without manager approval or special promotion"
 
   - name: block-late-refund
-    condition: "days_since_purchase > 30 and action == 'process_refund'"
+    condition: "days_since_purchase > 30 and action_type == 'process_refund'"
     action: deny
     description: "Refunds not accepted after 30 days"
 
   - name: block-large-refund-no-receipt
-    condition: "amount > 50 and has_receipt == False and action == 'process_refund'"
+    condition: "amount > 50 and has_receipt == False and action_type == 'process_refund'"
     action: deny
     description: "Refunds over $50 require a receipt"

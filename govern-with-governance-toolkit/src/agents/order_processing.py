@@ -62,6 +62,7 @@ class OrderProcessingAgent(BaseAgent):
                 "new_price": new_price,
                 "cost": product.cost,
                 "minimum_advertised_price": product.minimum_advertised_price,
+                "discount_percent": discount_percent,
             },
             context={"manager_approved": False, "special_promotion": False},
         )
