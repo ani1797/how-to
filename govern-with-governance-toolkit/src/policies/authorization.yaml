@@ -1,0 +1,48 @@
+apiVersion: governance.toolkit/v1
+name: retail-authorization
+default_action: allow
+rules:
+  - name: block-cashier-pii
+    condition: "role == 'cashier' and action == 'access_pii'"
+    action: deny
+    description: "Cashiers cannot access customer PII"
+
+  - name: require-consent-for-pii
+    condition: "action == 'access_pii' and consent_given == False"
+    action: deny
+    description: "PII access requires customer consent"
+
+  - name: block-cashier-tier-update
+    condition: "role == 'cashier' and action == 'update'"
+    action: deny
+    description: "Cashiers cannot update customer records"
+
+  - name: block-cashier-transfer
+    condition: "role == 'cashier' and action == 'transfer'"
+    action: deny
+    description: "Cashiers cannot transfer inventory"
+
+  - name: block-cashier-adjust
+    condition: "role == 'cashier' and action == 'adjust_inventory'"
+    action: deny
+    description: "Cashiers cannot adjust inventory"
+
+  - name: block-cashier-high-value-order
+    condition: "role == 'cashier' and action == 'process_order' and amount > 500"
+    action: deny
+    description: "Cashiers cannot process orders above $500 without approval"
+
+  - name: block-cashier-discount
+    condition: "role == 'cashier' and action == 'apply_discount' and discount_percent > 10"
+    action: deny
+    description: "Cashiers can apply discounts up to 10% only"
+
+  - name: block-cashier-high-refund
+    condition: "role == 'cashier' and action == 'process_refund' and amount > 100"
+    action: deny
+    description: "Cashiers cannot process refunds above $100"
+
+  - name: block-warehouse-staff-high-transfer
+    condition: "role == 'warehouse_staff' and action == 'transfer' and quantity > 100"
+    action: deny
+    description: "Warehouse staff cannot transfer more than 100 units without manager approval"
