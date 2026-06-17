@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "retail-agent-governance-workshop"
+version = "0.1.0"
+description = "Workshop demonstrating AGT-A and AGT-B policy enforcement using Agent Governance Toolkit"
+requires-python = ">=3.11"
+dependencies = [
+    "agent-governance-toolkit[full]>=4.0.0",
+    "azure-ai-projects>=1.0.0b7",
+    "azure-identity>=1.19.0",
+    "azure-ai-inference>=1.0.0b5",
+    "openai>=1.54.0",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "opentelemetry-api>=1.29.0",
+    "opentelemetry-sdk>=1.29.0",
+    "rich>=13.9.0",
+    "agent-framework>=1.6.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
+    "mypy>=1.13",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
