@@ -1,0 +1,14 @@
+# Environment
+.env
+.venv/
+uv.lock
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Evaluation outputs
+eval_results/
+*.eval.json
+results.json

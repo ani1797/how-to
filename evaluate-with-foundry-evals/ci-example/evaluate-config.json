@@ -1,0 +1,16 @@
+{
+  "data": "${{ github.workspace }}/evaluate-with-foundry-evals/ci-example/eval-input.jsonl",
+  "evaluators": {
+    "coherence": "CoherenceEvaluator",
+    "fluency": "FluencyEvaluator",
+    "relevance": "RelevanceEvaluator",
+    "f1": "F1ScoreEvaluator"
+  },
+  "ai_model_configuration": {
+    "type": "azure_openai",
+    "azure_endpoint": "${AZURE_OPENAI_ENDPOINT}",
+    "azure_deployment": "${AZURE_OPENAI_CHAT_DEPLOYMENT}",
+    "api_key": "${AZURE_OPENAI_API_KEY}",
+    "api_version": "${AZURE_OPENAI_API_VERSION}"
+  }
+}

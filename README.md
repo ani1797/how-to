@@ -28,6 +28,10 @@ Workshops on Azure AI services — hands-on, scenario-driven.
 A bite-sized intro to **Azure Document Intelligence** (formerly Form Recognizer). Each notebook covers one extraction feature against a real insurance scenario — claims, invoices, IDs, health cards — ready to run in minutes.
 → [Go to workshop](./extract-with-document-intelligence/README.md)
 
+### [Evaluate with Foundry Evals](./evaluate-with-foundry-evals/)
+A notebook-based walkthrough of **evaluating GenAI apps on Azure AI Foundry** with the `azure-ai-evaluation` SDK. Covers NLP/local metrics, AI-assisted quality, risk & safety, custom evaluators, and target-app evaluation — then wires **automated evaluation into CI** with the GenAI Evaluation GitHub Action. Insurance and banking use cases throughout.
+→ [Go to workshop](./evaluate-with-foundry-evals/README.md)
+
 ---
 
 ## 📊 Data & ML

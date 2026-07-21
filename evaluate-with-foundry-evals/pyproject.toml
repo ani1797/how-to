@@ -1,0 +1,17 @@
+[project]
+name = "evaluate-with-foundry-evals"
+version = "0.1.0"
+description = "A bite-sized workshop on evaluating GenAI apps on Azure AI Foundry with azure-ai-evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "azure-ai-evaluation>=1.0.0",
+    "azure-ai-projects>=1.0.0b7",
+    "azure-identity>=1.19.0",
+    "python-dotenv>=1.1.0",
+    "pandas>=2.0",
+    "ipykernel>=6.29",
+    # openai 2.x regressed Entra ID token-provider auth in the client constructor;
+    # azure-ai-evaluation is validated against the 1.x line.
+    "openai<2",
+]
