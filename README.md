@@ -10,6 +10,10 @@ Each workshop is independent — pick the one that solves your problem today. No
 
 Workshops on building, governing, and operating AI agents.
 
+### [Build with Microsoft Foundry](./build-with-microsoft-foundry/)
+A notebook-first course for building a fictional bank's relationship-manager assistant with Microsoft Foundry and Agent Framework. The initial local foundation covers synthetic data, authorization-safe tools, evaluation checks, and fine-tuning dataset validation; cloud labs are gated on a verified SDK and deployment matrix.
+→ [Go to workshop](./build-with-microsoft-foundry/README.md)
+
 ### [Build with Microsoft Agent Framework](./build-with-microsoft-agent-framework/)
 A notebook-based walkthrough of **Microsoft Agent Framework (MAF)** for Python. Covers the full lifecycle — streaming agents, function tools, multi-agent orchestration, middleware, MCP integration, and API hosting. Insurance and banking use cases throughout.
 → [Go to workshop](./build-with-microsoft-agent-framework/README.md)
